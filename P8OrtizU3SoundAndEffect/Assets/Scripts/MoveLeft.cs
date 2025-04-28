@@ -12,14 +12,18 @@ public class MoveLeft : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerControllerIIIScript = GameObject.Find("Player").GetComponent<PlayerControllerIII>();
+        playerControllerIIIScript = GameObject.Find("Road Rager (Player)").GetComponent<PlayerControllerIII>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(playerControllerIIIScript.gameOver == false)
+        {
             transform.Translate(Vector3.left * Time.deltaTime * speed);
+        }
     }
+            
 }
 
 

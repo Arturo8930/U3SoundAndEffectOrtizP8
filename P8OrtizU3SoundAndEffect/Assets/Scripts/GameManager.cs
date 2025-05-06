@@ -46,5 +46,16 @@ public class GameManager : MonoBehaviour
         float fractionOfJourney = distanceCovered / journeyLength;
 
         playerControllerIIIScript.GetComponent<Animator>().SetFloat("Speed_Multiplier", 0.5f);
+
+        while (fractionOfJourney < 1)
+        {
+            distanceCovered = (Time.time - startTime) * lerpSpeed;
+            fractionOfJourney = distanceCovered / journeyLength;
+            playerControllerIIIScript.transform.position = Vector3.Lerp(startPos, endPos, fractionOfJourney);
+            yield return null;
+        }
+
+        playerControllerIIIScript.GetComponent<Animator>().SetFloat("Speed_Multiplier", 1.0f);
+        playerControllerIIIScript.gameOver = false;
     }
 }
